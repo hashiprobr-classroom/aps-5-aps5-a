@@ -5,16 +5,17 @@ import java.util.Map;
 
 public class Data extends Referencia {
 
-    private int dia;
-    private int mes;
     private int ano;
+    private int mes;
+    private int dia;
     private Map<Integer, Integer> limites;
 
     public Data() {
 
-        this.dia = 1;
-        this.mes = 1;
         this.ano = 1970;
+        this.mes = 1;
+        this.dia = 1;
+
         this.limites = new HashMap<>();
 
 
@@ -45,12 +46,10 @@ public class Data extends Referencia {
         return ano;
     }
 
-    public void atualiza(int dia, int mes, int ano) {
+    public void atualiza(int ano, int mes, int dia) {
 
-        if (dia < 1) {
-            dia = 1;
-        } else if (dia > limites.get(mes)) {
-            dia = limites.get(mes);
+        if (ano < 1970) {
+            ano = 1970;
         }
 
         if (mes < 1) {
@@ -59,13 +58,15 @@ public class Data extends Referencia {
             mes = 12;
         }
 
-        if (ano < 1970) {
-            ano = 1970;
+        if (dia < 1) {
+            dia = 1;
+        } else if (dia > limites.get(mes)) {
+            dia = limites.get(mes);
         }
 
-        this.dia = dia;
-        this.mes = mes;
         this.ano = ano;
+        this.mes = mes;
+        this.dia = dia;
 
     }
 
