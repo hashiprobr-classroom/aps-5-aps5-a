@@ -2,30 +2,29 @@ package br.edu.insper.desagil.aps5.insee;
 
 public class Tempo extends Referencia {
 
-    private int minuto;
     private int hora;
+    private int minuto;
+
 
 
     public Tempo() {
-        this.minuto = 0;
-        this.hora = 0;
-    }
 
-    public int getMinuto() {
-        return minuto;
+        this.hora = 0;
+        this.minuto = 0;
+
     }
 
     public int getHora() {
         return hora;
     }
 
-    public void atualiza(int minuto, int hora) {
+    public int getMinuto() {
+        return minuto;
+    }
 
-        if (minuto < 0) {
-            minuto = 0;
-        } else if (minuto > 59) {
-            minuto = 59;
-        }
+
+
+    public void atualiza(int hora, int minuto) {
 
         if (hora < 0) {
             hora = 0;
@@ -33,8 +32,16 @@ public class Tempo extends Referencia {
             hora = 23;
         }
 
-        this.minuto = minuto;
+        if (minuto < 0) {
+            minuto = 0;
+        } else if (minuto > 59) {
+            minuto = 59;
+        }
+
+
         this.hora = hora;
+        this.minuto = minuto;
+
     }
 
     @Override
