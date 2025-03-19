@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 public class AgendaTest {
 
     private Agenda agenda = new Agenda();
+    DataTempo inicio = new DataTempo(new Data(), new Tempo());
+    DataTempo fim = new DataTempo(new Data(), new Tempo());
+    Evento evento = new Evento(inicio, fim);
 
     @Test
     public void constroi() {
@@ -17,14 +20,17 @@ public class AgendaTest {
 
     @Test
     public void adicionaValido() {
-        // nao soube fazer
+        fim.getTempo().atualiza(1, 0);
+
+        agenda.adiciona(evento);
+
+        assertEquals(1, agenda.getEventos().size());
+        assertTrue(agenda.getEventos().contains(evento));
     }
+
 
     @Test
     public void adicionaInvalido() {
-        DataTempo inicio = new DataTempo(new Data(), new Tempo());
-        DataTempo fim = new DataTempo(new Data(), new Tempo());
-        Evento evento = new Evento(inicio, fim);
 
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
                 () -> agenda.adiciona(evento));
